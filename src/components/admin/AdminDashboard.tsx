@@ -485,7 +485,7 @@ export default function AdminDashboard({
           <button
             type="button"
             onClick={handleLogout}
-            className="flex items-center gap-2 rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-sm font-semibold text-slate-600 transition-all duration-150 ease-out hover:border-red-300 hover:text-red-500 active:scale-[0.98] dark:border-slate-700/70 dark:bg-slate-900/80 dark:text-slate-300"
+            className="flex items-center gap-2 rounded-2xl border border-slate-200/70 bg-white/90 px-4 py-2.5 text-sm font-semibold text-slate-600 transition-all duration-150 ease-out hover:border-red-300 hover:text-red-500 active:scale-[0.98] dark:border-slate-700/70 dark:bg-slate-900/80 dark:text-slate-300"
           >
             <LogOut className="h-4 w-4" aria-hidden />
             Keluar
@@ -494,11 +494,11 @@ export default function AdminDashboard({
 
         {/* Stats ringkas */}
         <div className="mb-4 grid grid-cols-3 gap-3">
-          <div className="rounded-3xl border border-slate-200/60 bg-white/80 p-4 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/60 dark:bg-slate-900/80">
+          <div className="rounded-3xl border border-slate-200/80 bg-white/90 p-4 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/80 dark:bg-slate-900/80">
             <p className="text-xs text-slate-500 dark:text-slate-400">Total feedback</p>
             <p className="mt-1 text-2xl font-bold">{feedback.length}</p>
           </div>
-          <div className="rounded-3xl border border-slate-200/60 bg-white/80 p-4 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/60 dark:bg-slate-900/80">
+          <div className="rounded-3xl border border-slate-200/80 bg-white/90 p-4 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/80 dark:bg-slate-900/80">
             <p className="text-xs text-slate-500 dark:text-slate-400">Rata-rata rating</p>
             <p className="mt-1 flex items-center gap-1 text-2xl font-bold">
               {avgRating}
@@ -510,14 +510,14 @@ export default function AdminDashboard({
               )}
             </p>
           </div>
-          <div className="rounded-3xl border border-slate-200/60 bg-white/80 p-4 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/60 dark:bg-slate-900/80">
+          <div className="rounded-3xl border border-slate-200/80 bg-white/90 p-4 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/80 dark:bg-slate-900/80">
             <p className="text-xs text-slate-500 dark:text-slate-400">Belum di-approve</p>
             <p className="mt-1 text-2xl font-bold">{pendingCount}</p>
           </div>
         </div>
 
         {/* Setup Data Rider — 1 user = 1 driver, tampil di halaman guest */}
-        <section className="mb-4 rounded-3xl border border-slate-200/60 bg-white/80 p-5 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/60 dark:bg-slate-900/80">
+        <section className="mb-4 rounded-3xl border border-slate-200/80 bg-white/90 p-5 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/80 dark:bg-slate-900/80">
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
@@ -591,7 +591,7 @@ export default function AdminDashboard({
               <button
                 type="submit"
                 disabled={driverSave.status === "saving"}
-                className="flex items-center justify-center gap-2 rounded-2xl bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-all duration-150 ease-out hover:brightness-110 active:scale-[0.98] disabled:opacity-60 dark:bg-accent-soft"
+                className="flex items-center justify-center gap-2 rounded-2xl bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-all duration-150 ease-out hover:bg-blue-700 active:scale-[0.98] disabled:opacity-60 dark:bg-accent-soft"
               >
                 {driverSave.status === "saving" ? (
                   <>
@@ -607,7 +607,7 @@ export default function AdminDashboard({
               </button>
 
               {driverSave.status === "saved" && (
-                <p className="flex items-center gap-1.5 text-sm text-emerald-600 dark:text-emerald-400">
+                <p className="flex items-center gap-1.5 text-sm text-lime-700 dark:text-lime-400">
                   <CheckCircle2 className="h-4 w-4" aria-hidden />
                   Tersimpan — buka halaman guest (/) buat lihat hasilnya!
                 </p>
@@ -626,14 +626,14 @@ export default function AdminDashboard({
         )}
 
         {status === "loading" && (
-          <p className="flex items-center gap-2 rounded-3xl border border-slate-200/60 bg-white/80 p-5 text-xs font-normal text-slate-500 dark:text-slate-400 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/60 dark:bg-slate-900/80">
+          <p className="flex items-center gap-2 rounded-3xl border border-slate-200/80 bg-white/90 p-5 text-xs font-normal text-slate-500 dark:text-slate-400 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/80 dark:bg-slate-900/80">
             <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
             Nyiapin data admin...
           </p>
         )}
 
         {status === "error" && (
-          <div className="rounded-3xl border border-slate-200/60 bg-white/80 p-5 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/60 dark:bg-slate-900/80">
+          <div className="rounded-3xl border border-slate-200/80 bg-white/90 p-5 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/80 dark:bg-slate-900/80">
             <p className="text-sm text-red-500">
               Gagal memuat data. Pastikan policy RLS untuk admin (role
               `authenticated`) udah dijalankan di SQL Editor, terus coba lagi.
@@ -644,7 +644,7 @@ export default function AdminDashboard({
                 setStatus("loading");
                 void loadAll();
               }}
-              className="mt-3 flex items-center gap-2 rounded-2xl bg-accent px-4 py-2 text-sm font-semibold text-white transition-all duration-150 ease-out hover:brightness-110 active:scale-[0.98] dark:bg-accent-soft"
+              className="mt-3 flex items-center gap-2 rounded-2xl bg-accent px-4 py-2 text-sm font-semibold text-white transition-all duration-150 ease-out hover:bg-blue-700 active:scale-[0.98] dark:bg-accent-soft"
             >
               <RefreshCw className="h-4 w-4" aria-hidden />
               Coba lagi
@@ -655,7 +655,7 @@ export default function AdminDashboard({
         {status === "ready" && (
           <>
             {/* Kesan Penumpang */}
-            <section className="mb-4 rounded-3xl border border-slate-200/60 bg-white/80 p-5 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/60 dark:bg-slate-900/80">
+            <section className="mb-4 rounded-3xl border border-slate-200/80 bg-white/90 p-5 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/80 dark:bg-slate-900/80">
               <h2 className="flex items-center gap-2 text-lg font-semibold">
                 <MessageSquare
                   className="h-5 w-5 text-accent dark:text-accent-soft"
@@ -677,7 +677,7 @@ export default function AdminDashboard({
                 {feedback.map((item) => (
                   <article
                     key={item.id}
-                    className="rounded-2xl border border-slate-200/60 bg-slate-50/80 p-4 dark:border-slate-800/60 dark:bg-slate-950/60"
+                    className="rounded-2xl border border-slate-200/80 bg-slate-50/80 p-4 dark:border-slate-800/80 dark:bg-slate-950/60"
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0">
@@ -732,7 +732,7 @@ export default function AdminDashboard({
             </section>
 
             {/* Today's Motivation — moderasi */}
-            <section className="rounded-3xl border border-slate-200/60 bg-white/80 p-5 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/60 dark:bg-slate-900/80">
+            <section className="rounded-3xl border border-slate-200/80 bg-white/90 p-5 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/80 dark:bg-slate-900/80">
               <h2 className="flex items-center gap-2 text-lg font-semibold">
                 <Quote
                   className="h-5 w-5 text-accent dark:text-accent-soft"
@@ -747,7 +747,7 @@ export default function AdminDashboard({
               {/* Form tambah kutipan */}
               <form
                 onSubmit={handleAddQuote}
-                className="mt-4 flex flex-col gap-3 border-b border-slate-200/60 pb-4 dark:border-slate-800/60"
+                className="mt-4 flex flex-col gap-3 border-b border-slate-200/80 pb-4 dark:border-slate-800/80"
               >
                 <div>
                   <label
@@ -765,7 +765,7 @@ export default function AdminDashboard({
                     onChange={(e) => setNewQuote(e.target.value)}
                     placeholder="Semangat terus ya hari ini! ✨"
                     disabled={isAdding}
-                    className="w-full resize-none rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-accent disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-accent-soft"
+                    className="w-full resize-none rounded-2xl border border-slate-200/70 bg-white/90 px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-accent disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-accent-soft"
                   />
                 </div>
                 <div className="flex flex-col gap-3 sm:flex-row">
@@ -776,12 +776,12 @@ export default function AdminDashboard({
                     onChange={(e) => setNewAuthor(e.target.value)}
                     placeholder="Nama penulis (opsional)"
                     disabled={isAdding}
-                    className="w-full rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-accent disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-accent-soft sm:max-w-[240px]"
+                    className="w-full rounded-2xl border border-slate-200/70 bg-white/90 px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-accent disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-accent-soft sm:max-w-[240px]"
                   />
                   <button
                     type="submit"
                     disabled={isAdding}
-                    className="flex items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-2.5 text-sm font-semibold text-white transition-all duration-150 ease-out hover:brightness-110 active:scale-[0.98] disabled:opacity-60 dark:bg-accent-soft"
+                    className="flex items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-2.5 text-sm font-semibold text-white transition-all duration-150 ease-out hover:bg-blue-700 active:scale-[0.98] disabled:opacity-60 dark:bg-accent-soft"
                   >
                     {isAdding ? (
                       <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
@@ -805,8 +805,8 @@ export default function AdminDashboard({
                     key={item.id}
                     className={`rounded-2xl border p-4 transition ${
                       item.is_approved
-                        ? "border-slate-200/60 bg-slate-50/80 dark:border-slate-800/60 dark:bg-slate-950/60"
-                        : "border-amber-300/60 bg-amber-500/5 dark:border-amber-500/30"
+                        ? "border-slate-200/80 bg-slate-50/80 dark:border-slate-800/80 dark:bg-slate-950/60"
+                        : "border-orange-500/30 bg-orange-500/5 dark:border-orange-500/30"
                     }`}
                   >
                     <p className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
@@ -823,8 +823,8 @@ export default function AdminDashboard({
                         disabled={busyId === item.id}
                         className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition-all duration-150 ease-out active:scale-[0.98] disabled:opacity-50 ${
                           item.is_approved
-                            ? "bg-emerald-500/15 text-emerald-600 hover:bg-emerald-500/25 dark:text-emerald-400"
-                            : "bg-amber-500/15 text-amber-600 hover:bg-amber-500/25 dark:text-amber-400"
+                            ? "bg-lime-500/15 text-lime-700 hover:bg-lime-500/25 dark:text-lime-400"
+                            : "bg-orange-500/10 text-orange-600 hover:bg-orange-500/20 dark:text-orange-400 border border-orange-500/20"
                         }`}
                       >
                         {busyId === item.id ? (
@@ -846,7 +846,7 @@ export default function AdminDashboard({
             </section>
 
             {/* Galeri Kesan Penumpang (foto dari admin → tampil di guest) */}
-            <section className="mt-4 rounded-3xl border border-slate-200/60 bg-white/80 p-5 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/60 dark:bg-slate-900/80">
+            <section className="mt-4 rounded-3xl border border-slate-200/80 bg-white/90 p-5 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/80 dark:bg-slate-900/80">
               <h2 className="flex items-center gap-2 text-lg font-semibold">
                 <ImageIcon
                   className="h-5 w-5 text-accent dark:text-accent-soft"
@@ -861,7 +861,7 @@ export default function AdminDashboard({
 
               <form
                 onSubmit={handleUploadPhoto}
-                className="mt-4 flex flex-col gap-3 border-b border-slate-200/60 pb-4 dark:border-slate-800/60"
+                className="mt-4 flex flex-col gap-3 border-b border-slate-200/80 pb-4 dark:border-slate-800/80"
               >
                 <div>
                   <label
@@ -882,7 +882,7 @@ export default function AdminDashboard({
                     onChange={(e) =>
                       setSelectedFile(e.target.files?.[0] ?? null)
                     }
-                    className="block w-full text-sm text-slate-600 file:mr-3 file:rounded-2xl file:border-0 file:bg-accent file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white transition-all duration-150 ease-out hover:file:brightness-110 dark:text-slate-300 dark:file:bg-accent-soft"
+                    className="block w-full text-sm text-slate-600 file:mr-3 file:rounded-2xl file:border-0 file:bg-accent file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white transition-all duration-150 ease-out hover:file:bg-blue-700 dark:text-slate-300 dark:file:bg-accent-soft"
                   />
                 </div>
 
@@ -894,12 +894,12 @@ export default function AdminDashboard({
                     onChange={(e) => setUploadCaption(e.target.value)}
                     placeholder="Caption (opsional), mis. 'Seru banget!'"
                     disabled={isUploading}
-                    className="w-full rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-accent disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-accent-soft sm:max-w-[260px]"
+                    className="w-full rounded-2xl border border-slate-200/70 bg-white/90 px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-accent disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-accent-soft sm:max-w-[260px]"
                   />
                   <button
                     type="submit"
                     disabled={isUploading}
-                    className="flex items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-2.5 text-sm font-semibold text-white transition-all duration-150 ease-out hover:brightness-110 active:scale-[0.98] disabled:opacity-60 dark:bg-accent-soft"
+                    className="flex items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-2.5 text-sm font-semibold text-white transition-all duration-150 ease-out hover:bg-blue-700 active:scale-[0.98] disabled:opacity-60 dark:bg-accent-soft"
                   >
                     {isUploading ? (
                       <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
@@ -927,7 +927,7 @@ export default function AdminDashboard({
                   {gallery.map((photo) => (
                     <figure
                       key={photo.id}
-                      className="overflow-hidden rounded-2xl border border-slate-200/60 bg-slate-50/80 dark:border-slate-800/60 dark:bg-slate-950/60"
+                      className="overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-50/80 dark:border-slate-800/80 dark:bg-slate-950/60"
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
@@ -967,7 +967,7 @@ export default function AdminDashboard({
                             aria-label="Simpan caption"
                             disabled={busyId === photo.id}
                             onClick={() => void handleSaveCaption(photo)}
-                            className="rounded-lg p-1.5 text-emerald-600 transition-all duration-150 ease-out hover:bg-emerald-500/10 active:scale-[0.98] disabled:opacity-50 dark:text-emerald-400"
+                            className="rounded-lg p-1.5 text-lime-700 transition-all duration-150 ease-out hover:bg-lime-500/10 active:scale-[0.98] disabled:opacity-50 dark:text-lime-400"
                           >
                             {busyId === photo.id ? (
                               <Loader2

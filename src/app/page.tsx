@@ -77,7 +77,7 @@ function ProfileCard({ profile }: { profile: DriverView }) {
   const hasAvatar = profile.avatarUrl.trim().length > 0;
 
   return (
-    <section className="rounded-3xl border border-slate-200/60 bg-white/80 p-5 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/60 dark:bg-slate-900/80">
+    <section className="rounded-3xl border border-slate-200/80 bg-white/90 p-5 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/80 dark:bg-slate-900/80">
       <div className="flex items-center gap-4">
         {hasAvatar ? (
           // URL foto dari form admin (tabel drivers) — pakai img biasa saja.
@@ -108,13 +108,13 @@ function ProfileCard({ profile }: { profile: DriverView }) {
             <span
               className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${
                 status
-                  ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+                  ? "bg-lime-500/15 text-lime-700 dark:text-lime-400 border border-lime-500/30"
                   : "bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400"
               }`}
             >
               <span
                 className={`h-1.5 w-1.5 rounded-full ${
-                  status ? "bg-emerald-500" : "bg-slate-400 dark:bg-slate-500"
+                  status ? "bg-lime-500" : "bg-slate-400 dark:bg-slate-500"
                 }`}
               />
               {orDash(profile.status)}
@@ -225,7 +225,7 @@ export default async function Home() {
                   />
                 </dl>
 
-                <div className="mt-4 border-t border-slate-200/60 pt-3 dark:border-slate-800/60">
+                <div className="mt-4 border-t border-slate-200/80 pt-3 dark:border-slate-800/80">
                   <p className="text-xs font-medium text-slate-700 dark:text-slate-300">
                     Hobi
                   </p>

@@ -47,7 +47,7 @@ export default function LoginForm() {
   }
 
   const inputClass =
-    "w-full rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-accent disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-accent-soft";
+    "w-full rounded-2xl border border-slate-200/70 bg-white/90 px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-accent disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-accent-soft";
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3">
@@ -94,7 +94,7 @@ export default function LoginForm() {
       <button
         type="submit"
         disabled={isLoading}
-        className="mt-1 flex items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-3 text-sm font-semibold text-white transition-all duration-150 ease-out hover:brightness-110 active:scale-[0.98] disabled:opacity-60 dark:bg-accent-soft"
+        className="mt-1 flex items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-3 text-sm font-semibold text-white transition-all duration-150 ease-out hover:bg-blue-700 active:scale-[0.98] disabled:opacity-60 dark:bg-accent-soft"
       >
         {isLoading ? (
           <>
