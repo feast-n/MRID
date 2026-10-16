@@ -18,6 +18,7 @@ import {
   Star,
   Trash2,
   Upload,
+  UserRound,
   X,
 } from "lucide-react";
 import { createClient } from "@/utils/supabase/client";
@@ -26,6 +27,7 @@ import {
   GALLERY_MAX_FILE_BYTES,
   type GalleryPhoto,
 } from "@/config/gallery";
+import { type DriverEditableKey, type DriverRow } from "@/config/driver";
 
 export interface FeedbackRow {
   id: string;
@@ -41,6 +43,77 @@ export interface MotivationRow {
   quote: string;
   is_approved: boolean;
   created_at: string;
+}
+
+/** Field form Setup Data Rider (tanpa kolom sistem). */
+const DRIVER_FIELDS: {
+  key: DriverEditableKey;
+  label: string;
+  placeholder: string;
+}[] = [
+  { key: "name", label: "Nama lengkap", placeholder: "cth. Rizky Saputra" },
+  {
+    key: "avatar_url",
+    label: "URL foto profil",
+    placeholder: "https://... (opsional)",
+  },
+  {
+    key: "status",
+    label: "Status hari ini",
+    placeholder: "cth. Online — siap ambil order",
+  },
+  { key: "motor_type", label: "Tipe motor", placeholder: "cth. BeAT 2019" },
+  { key: "plate_number", label: "Plat nomor", placeholder: "cth. B 1234 XYZ" },
+  { key: "cvt_setup", label: "Setup CVT", placeholder: "cth. Roller 9 gram" },
+  {
+    key: "engine_setup",
+    label: "Setup mesin",
+    placeholder: "cth. Standar pabrik",
+  },
+  {
+    key: "undercarriage_setup",
+    label: "Setup kaki-kaki",
+    placeholder: "cth. Per racing",
+  },
+  {
+    key: "basecamp_name",
+    label: "Basecamp favorit",
+    placeholder: "cth. Depan kampus",
+  },
+  {
+    key: "basecamp_note",
+    label: "Catatan basecamp",
+    placeholder: "Ngetem tiap sore",
+  },
+  {
+    key: "side_quest",
+    label: "Side quest",
+    placeholder: "cth. Kuliah & Web Dev",
+  },
+];
+
+type DriverDraft = Record<DriverEditableKey, string> & { hobbies: string[] };
+
+type DriverSaveState =
+  | { status: "idle" | "saving" | "saved" }
+  | { status: "error"; message: string };
+
+/** Isi draft dari baris driver milik user (null = belum pernah setup). */
+function driverDraftFromRow(row: DriverRow | null): DriverDraft {
+  return {
+    name: row?.name ?? "",
+    avatar_url: row?.avatar_url ?? "",
+    status: row?.status ?? "",
+    motor_type: row?.motor_type ?? "",
+    plate_number: row?.plate_number ?? "",
+    cvt_setup: row?.cvt_setup ?? "",
+    engine_setup: row?.engine_setup ?? "",
+    undercarriage_setup: row?.undercarriage_setup ?? "",
+    basecamp_name: row?.basecamp_name ?? "",
+    basecamp_note: row?.basecamp_note ?? "",
+    side_quest: row?.side_quest ?? "",
+    hobbies: row?.hobbies ?? [],
+  };
 }
 
 type LoadStatus = "loading" | "ready" | "error";
@@ -63,12 +136,16 @@ function formatDate(iso: string): string {
  */
 export default function AdminDashboard({
   email,
+  userId,
+  initialDriver,
   initialFeedback,
   initialMotivations,
   initialGallery,
   loadFailed,
 }: {
   email: string;
+  userId: string;
+  initialDriver: DriverRow | null;
   initialFeedback: FeedbackRow[];
   initialMotivations: MotivationRow[];
   initialGallery: GalleryPhoto[];
@@ -98,6 +175,21 @@ export default function AdminDashboard({
   const [newQuote, setNewQuote] = useState("");
   const [newAuthor, setNewAuthor] = useState("");
   const [isAdding, setIsAdding] = useState(false);
+
+  // State form Setup Data Rider (1 user = 1 driver)
+  const [driver, setDriver] = useState<DriverDraft>(() =>
+    driverDraftFromRow(initialDriver),
+  );
+  const [hobbiesText, setHobbiesText] = useState(() =>
+    (initialDriver?.hobbies ?? []).join(", "),
+  );
+  const [driverSave, setDriverSave] = useState<DriverSaveState>({
+    status: "idle",
+  });
+
+  function setDriverField(key: DriverEditableKey, value: string) {
+    setDriver((prev) => ({ ...prev, [key]: value }));
+  }
 
   const loadAll = useCallback(async () => {
     const supabase = createClient();
@@ -164,6 +256,55 @@ export default function AdminDashboard({
       );
     }
     setBusyId(null);
+  }
+
+  /** UPSERT driver milik sendiri — PK user_id menjamin 1 user = 1 driver. */
+  async function handleSaveDriver(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const hobbies = hobbiesText
+      .split(",")
+      .map((item) => item.trim())
+      .filter(Boolean);
+
+    setDriverSave({ status: "saving" });
+    try {
+      const supabase = createClient();
+      const { error } = await supabase.from("drivers").upsert(
+        {
+          user_id: userId,
+          name: driver.name,
+          avatar_url: driver.avatar_url,
+          status: driver.status,
+          motor_type: driver.motor_type,
+          plate_number: driver.plate_number,
+          cvt_setup: driver.cvt_setup,
+          engine_setup: driver.engine_setup,
+          undercarriage_setup: driver.undercarriage_setup,
+          basecamp_name: driver.basecamp_name,
+          basecamp_note: driver.basecamp_note,
+          hobbies,
+          side_quest: driver.side_quest,
+        },
+        { onConflict: "user_id" },
+      );
+
+      if (error) {
+        setDriverSave({
+          status: "error",
+          message: `Gagal simpan (${error.message}). Pastikan SQL 0003_drivers.sql udah dijalankan ya.`,
+        });
+        return;
+      }
+
+      setDriverSave({ status: "saved" });
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "Unknown error";
+      setDriverSave({
+        status: "error",
+        message: `Ada gangguan (${message}). Coba lagi ya!`,
+      });
+    }
   }
 
   async function handleUploadPhoto(event: React.FormEvent<HTMLFormElement>) {
@@ -374,6 +515,109 @@ export default function AdminDashboard({
             <p className="mt-1 text-2xl font-bold">{pendingCount}</p>
           </div>
         </div>
+
+        {/* Setup Data Rider — 1 user = 1 driver, tampil di halaman guest */}
+        <section className="mb-4 rounded-3xl border border-slate-200/60 bg-white/80 p-5 backdrop-blur-xl dark:border-slate-800/60 dark:bg-slate-900/80">
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
+                Driver Identity
+              </p>
+              <h2 className="mt-1 flex items-center gap-2 text-[17px] font-semibold tracking-tight text-slate-900 dark:text-slate-100">
+                <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] bg-accent/10 text-accent dark:bg-accent-soft/15 dark:text-accent-soft">
+                  <UserRound className="h-[18px] w-[18px]" aria-hidden />
+                </span>
+                Setup Data Rider
+              </h2>
+            </div>
+            {initialDriver && (
+              <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-accent/10 px-2.5 py-1 text-[11px] font-medium text-accent dark:bg-accent-soft/15 dark:text-accent-soft">
+                <CheckCircle2 className="h-3.5 w-3.5" aria-hidden />
+                Sudah di-setup
+              </span>
+            )}
+          </div>
+          <p className="mt-1.5 text-sm text-slate-500 dark:text-slate-400">
+            Data ini yang tampil ke penumpang di halaman guest. Satu akun cuma
+            boleh punya satu data driver — punya kamu sendiri.
+          </p>
+
+          <form
+            onSubmit={handleSaveDriver}
+            className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2"
+          >
+            {DRIVER_FIELDS.map((field) => (
+              <div key={field.key}>
+                <label
+                  htmlFor={`driver-${field.key}`}
+                  className="mb-1 block text-xs font-medium text-slate-500 dark:text-slate-400"
+                >
+                  {field.label}
+                </label>
+                <input
+                  id={`driver-${field.key}`}
+                  type="text"
+                  maxLength={200}
+                  value={driver[field.key]}
+                  onChange={(e) => setDriverField(field.key, e.target.value)}
+                  placeholder={field.placeholder}
+                  disabled={driverSave.status === "saving"}
+                  className="w-full rounded-2xl border border-slate-200/70 bg-white/90 px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-accent disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-accent-soft"
+                />
+              </div>
+            ))}
+
+            <div className="sm:col-span-2">
+              <label
+                htmlFor="driver-hobbies"
+                className="mb-1 block text-xs font-medium text-slate-500 dark:text-slate-400"
+              >
+                Hobi{" "}
+                <span className="font-normal">(pisahkan dengan koma)</span>
+              </label>
+              <input
+                id="driver-hobbies"
+                type="text"
+                maxLength={300}
+                value={hobbiesText}
+                onChange={(e) => setHobbiesText(e.target.value)}
+                placeholder="cth. Nongkrong, Main gitar, Kulineran"
+                disabled={driverSave.status === "saving"}
+                className="w-full rounded-2xl border border-slate-200/70 bg-white/90 px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-accent disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-accent-soft"
+              />
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3 sm:col-span-2">
+              <button
+                type="submit"
+                disabled={driverSave.status === "saving"}
+                className="flex items-center justify-center gap-2 rounded-2xl bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-all duration-200 ease-out hover:brightness-110 active:scale-95 disabled:opacity-60 dark:bg-accent-soft"
+              >
+                {driverSave.status === "saving" ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
+                    Lagi nyimpen...
+                  </>
+                ) : (
+                  <>
+                    <Check className="h-4 w-4" aria-hidden />
+                    Simpan data rider
+                  </>
+                )}
+              </button>
+
+              {driverSave.status === "saved" && (
+                <p className="flex items-center gap-1.5 text-sm text-emerald-600 dark:text-emerald-400">
+                  <CheckCircle2 className="h-4 w-4" aria-hidden />
+                  Tersimpan — buka halaman guest (/) buat lihat hasilnya!
+                </p>
+              )}
+              {driverSave.status === "error" && (
+                <p className="text-sm text-red-500">{driverSave.message}</p>
+              )}
+            </div>
+          </form>
+        </section>
 
         {actionError && (
           <p className="mb-4 rounded-2xl bg-red-500/10 px-3 py-2 text-sm text-red-500">

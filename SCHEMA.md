@@ -33,6 +33,29 @@ File canonical: **`supabase/migrations/0001_mrid_init.sql`** — jalankan di Sup
 
 **Admin auth:** akun dibuat di Supabase → Authentication → Users → Add user (email + password, Auto Confirm) → role `authenticated`. Login hanya di `/admin/login` — halaman client (`/`) tidak punya tombol login.
 
+## DRIVERS (1 user = 1 driver — Setup Data Rider dari dashboard)
+File SQL sinkron: **`supabase/migrations/0003_drivers.sql`**
+
+### Table: `drivers`
+- `user_id`: uuid (**Primary Key**, FK → `auth.users.id`, `on delete cascade`) — *struktural menjamin 1 akun = 1 baris driver*
+- `created_at` / `updated_at`: timestamptz (updated_at otomatis via trigger `touch_updated_at`)
+- Identitas: `name`, `avatar_url`, `status` (semua text, default `''`)
+- Garage: `motor_type`, `plate_number`, `cvt_setup`, `engine_setup`, `undercarriage_setup` (text)
+- Basecamp: `basecamp_name`, `basecamp_note` (text), `hobbies` (text[]), `side_quest` (text)
+
+### RLS
+- **Publik (anon):** `SELECT` — guest `/` membaca identitas rider
+- **Owner (authenticated):** `INSERT/UPDATE/DELETE` hanya jika `user_id = auth.uid()` — admin tidak bisa menyentuh driver lain
+
+### Alur data
+1. Admin `/admin` → section **"Setup Data Rider"** → form → `UPSERT ... onConflict: "user_id"`
+2. Guest `/` (server component, `instant = false`) → `SELECT * FROM drivers ORDER BY created_at` → render per driver (Profile → Garage → Basecamp)
+3. Tabel kosong/gagal? → **fallback ke `src/config/rider.ts`** (field kosong → `—`, tidak mengarang data)
+
+Kode terkait: `src/config/driver.ts` (`DriverRow`, `DriverEditableKey`), `src/app/page.tsx`, `AdminDashboard.tsx` (`DRIVER_FIELDS`, `handleSaveDriver`).
+
+---
+
 ## GALLERY "Kesan Penumpang" (Foto — Model B)
 File SQL sinkron: **`supabase/migrations/0002_gallery.sql`**
 
