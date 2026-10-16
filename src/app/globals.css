@@ -6,7 +6,7 @@
  * Semua warna/jarak di komponen mengacu ke token di sini.
  * --------------------------------------------------------------- */
 :root {
-  --background: #f8fafc;
+  --background: #f1f5f9; /* slate-100 — Neutral Soft Slate (anti-slop, bukan putih glare) */
   --foreground: #0f172a;
 
   /* SF Pro di perangkat Apple, jatuh ke Geist lalu system-ui. */

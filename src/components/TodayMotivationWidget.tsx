@@ -95,7 +95,7 @@ export default function TodayMotivationWidget() {
   }, [mergeItems]);
 
   return (
-    <section className="rounded-3xl border border-slate-200/60 bg-white/80 p-5 backdrop-blur-xl dark:border-slate-800/60 dark:bg-slate-900/80">
+    <section className="rounded-3xl border border-slate-200/60 bg-white/80 p-5 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/60 dark:bg-slate-900/80">
       <div className="flex items-center justify-between gap-3">
         <div className="min-w-0">
           <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
@@ -117,7 +117,7 @@ export default function TodayMotivationWidget() {
 
       <div className="mt-4">
         {state.status === "loading" && (
-          <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+          <div className="flex items-center gap-2 text-xs font-normal text-slate-500 dark:text-slate-400">
             <RefreshCw className="h-4 w-4 animate-spin" aria-hidden />
             Nyari motivasi hari ini...
           </div>
@@ -151,7 +151,7 @@ export default function TodayMotivationWidget() {
                   <blockquote className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                     {item.quote}
                   </blockquote>
-                  <figcaption className="text-xs font-medium text-slate-500 dark:text-slate-400">
+                  <figcaption className="text-xs font-medium text-slate-700 dark:text-slate-300">
                     — {item.author.trim() || "Penumpang Baik"}
                   </figcaption>
                 </figure>

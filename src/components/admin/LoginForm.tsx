@@ -54,7 +54,7 @@ export default function LoginForm() {
       <div>
         <label
           htmlFor="admin-email"
-          className="mb-1 block text-xs font-medium text-slate-500 dark:text-slate-400"
+          className="mb-1 block text-xs font-medium text-slate-700 dark:text-slate-300"
         >
           Email admin
         </label>
@@ -74,7 +74,7 @@ export default function LoginForm() {
       <div>
         <label
           htmlFor="admin-password"
-          className="mb-1 block text-xs font-medium text-slate-500 dark:text-slate-400"
+          className="mb-1 block text-xs font-medium text-slate-700 dark:text-slate-300"
         >
           Password
         </label>
@@ -94,7 +94,7 @@ export default function LoginForm() {
       <button
         type="submit"
         disabled={isLoading}
-        className="mt-1 flex items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-3 text-sm font-semibold text-white transition-all duration-200 ease-out hover:brightness-110 active:scale-95 disabled:opacity-60 dark:bg-accent-soft"
+        className="mt-1 flex items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-3 text-sm font-semibold text-white transition-all duration-150 ease-out hover:brightness-110 active:scale-[0.98] disabled:opacity-60 dark:bg-accent-soft"
       >
         {isLoading ? (
           <>

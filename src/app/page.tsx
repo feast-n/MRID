@@ -77,7 +77,7 @@ function ProfileCard({ profile }: { profile: DriverView }) {
   const hasAvatar = profile.avatarUrl.trim().length > 0;
 
   return (
-    <section className="rounded-3xl border border-slate-200/60 bg-white/80 p-5 backdrop-blur-xl dark:border-slate-800/60 dark:bg-slate-900/80">
+    <section className="rounded-3xl border border-slate-200/60 bg-white/80 p-5 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/60 dark:bg-slate-900/80">
       <div className="flex items-center gap-4">
         {hasAvatar ? (
           // URL foto dari form admin (tabel drivers) — pakai img biasa saja.
@@ -148,18 +148,18 @@ export default async function Home() {
     rows.length > 0 ? rows.map(viewFromRow) : [fallbackFromConfig()];
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+    <div className="min-h-screen bg-slate-100 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
       <main className="mx-auto flex w-full max-w-lg flex-col gap-4 px-4 py-8 sm:px-6 lg:py-12">
         {/* Header */}
         <header className="px-1">
           <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-accent dark:text-accent-soft">
             My Rider Identity
           </p>
-          <h1 className="mt-1 text-[34px] font-bold leading-none tracking-tight">
+          <h1 className="mt-1 text-[34px] font-semibold leading-none tracking-tight text-slate-900 dark:text-slate-100">
             MRID
             <span className="text-accent dark:text-accent-soft">.</span>
           </h1>
-          <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+          <p className="mt-2 text-xs font-normal text-slate-500 dark:text-slate-400">
             Dashboard rider ala widget iOS — clean, singkat, to the point.
           </p>
         </header>
@@ -226,7 +226,7 @@ export default async function Home() {
                 </dl>
 
                 <div className="mt-4 border-t border-slate-200/60 pt-3 dark:border-slate-800/60">
-                  <p className="text-xs font-medium text-slate-500 dark:text-slate-400">
+                  <p className="text-xs font-medium text-slate-700 dark:text-slate-300">
                     Hobi
                   </p>
                   <div className="mt-2 flex flex-wrap gap-2">

@@ -24,8 +24,8 @@ export default async function AdminLoginPage() {
   if (user) redirect("/admin");
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4 py-10 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
-      <div className="w-full max-w-sm rounded-3xl border border-slate-200/60 bg-white/80 p-6 backdrop-blur-xl dark:border-slate-800/60 dark:bg-slate-900/80">
+    <div className="flex min-h-screen items-center justify-center bg-slate-100 px-4 py-10 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+      <div className="w-full max-w-sm rounded-3xl border border-slate-200/60 bg-white/80 p-6 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/60 dark:bg-slate-900/80">
         <div className="flex items-center gap-3">
           <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-accent to-accent-soft text-white">
             <ShieldCheck className="h-5 w-5" aria-hidden />
@@ -38,7 +38,7 @@ export default async function AdminLoginPage() {
           </div>
         </div>
 
-        <p className="mb-4 mt-4 text-sm text-slate-500 dark:text-slate-400">
+        <p className="mb-4 mt-4 text-xs font-normal text-slate-500 dark:text-slate-400">
           Masuk dulu ya biar bisa cek feedback penumpang &amp; moderasi kutipan
           motivasi.
         </p>
