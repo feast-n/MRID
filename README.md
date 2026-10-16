@@ -6,7 +6,7 @@ A mobile-first, iOS-minimalist web dashboard that shows an online ojek (ride-hai
 
 MRID is a single-page dashboard a rider pulls up so passengers can see who's picking them up - photo, name, status, motor specs, basecamp, hobbies, and a quick passenger feedback form.
 
-**Zero hallucination:** every field comes from `src/config/rider.ts` or the Supabase `drivers` table. Empty fields render as `—`; nothing is ever fabricated.
+**Zero hallucination:** every field comes from `src/config/rider.ts` or the Supabase `drivers` table. Empty fields render as `-`; nothing is ever fabricated.
 
 ## Design
 
@@ -58,7 +58,7 @@ Admin setup lives at `/admin` and writes to the `drivers` table.
 ## Data rules
 
 - Rider data comes only from `src/config/rider.ts` or Supabase `drivers` - never hardcoded or invented
-- Empty fields render `—` as fallback
+- Empty fields render `-` as fallback
 - Use `src/utils/supabase/client.ts` (Client Component) or `src/utils/supabase/server.ts` (Server Component) - do not change Supabase import structure
 
 ## Git workflow
