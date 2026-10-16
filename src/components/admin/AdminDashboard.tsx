@@ -591,7 +591,7 @@ export default function AdminDashboard({
               <button
                 type="submit"
                 disabled={driverSave.status === "saving"}
-                className="flex items-center justify-center gap-2 rounded-2xl bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-all duration-150 ease-out hover:bg-blue-700 active:scale-[0.98] disabled:opacity-60 dark:bg-accent-soft"
+                className="flex items-center justify-center gap-2 rounded-2xl bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-all duration-150 ease-out hover:bg-accent-strong active:scale-[0.98] disabled:opacity-60 dark:bg-accent-soft"
               >
                 {driverSave.status === "saving" ? (
                   <>
@@ -644,7 +644,7 @@ export default function AdminDashboard({
                 setStatus("loading");
                 void loadAll();
               }}
-              className="mt-3 flex items-center gap-2 rounded-2xl bg-accent px-4 py-2 text-sm font-semibold text-white transition-all duration-150 ease-out hover:bg-blue-700 active:scale-[0.98] dark:bg-accent-soft"
+              className="mt-3 flex items-center gap-2 rounded-2xl bg-accent px-4 py-2 text-sm font-semibold text-white transition-all duration-150 ease-out hover:bg-accent-strong active:scale-[0.98] dark:bg-accent-soft"
             >
               <RefreshCw className="h-4 w-4" aria-hidden />
               Coba lagi
@@ -781,7 +781,7 @@ export default function AdminDashboard({
                   <button
                     type="submit"
                     disabled={isAdding}
-                    className="flex items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-2.5 text-sm font-semibold text-white transition-all duration-150 ease-out hover:bg-blue-700 active:scale-[0.98] disabled:opacity-60 dark:bg-accent-soft"
+                    className="flex items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-2.5 text-sm font-semibold text-white transition-all duration-150 ease-out hover:bg-accent-strong active:scale-[0.98] disabled:opacity-60 dark:bg-accent-soft"
                   >
                     {isAdding ? (
                       <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
@@ -882,7 +882,7 @@ export default function AdminDashboard({
                     onChange={(e) =>
                       setSelectedFile(e.target.files?.[0] ?? null)
                     }
-                    className="block w-full text-sm text-slate-600 file:mr-3 file:rounded-2xl file:border-0 file:bg-accent file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white transition-all duration-150 ease-out hover:file:bg-blue-700 dark:text-slate-300 dark:file:bg-accent-soft"
+                    className="block w-full text-sm text-slate-600 file:mr-3 file:rounded-2xl file:border-0 file:bg-accent file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white transition-all duration-150 ease-out hover:file:bg-accent-strong dark:text-slate-300 dark:file:bg-accent-soft"
                   />
                 </div>
 
@@ -899,7 +899,7 @@ export default function AdminDashboard({
                   <button
                     type="submit"
                     disabled={isUploading}
-                    className="flex items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-2.5 text-sm font-semibold text-white transition-all duration-150 ease-out hover:bg-blue-700 active:scale-[0.98] disabled:opacity-60 dark:bg-accent-soft"
+                    className="flex items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-2.5 text-sm font-semibold text-white transition-all duration-150 ease-out hover:bg-accent-strong active:scale-[0.98] disabled:opacity-60 dark:bg-accent-soft"
                   >
                     {isUploading ? (
                       <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
@@ -1037,3 +1037,4 @@ export default function AdminDashboard({
     </div>
   );
 }
+

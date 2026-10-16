@@ -119,7 +119,7 @@ export default function GuestGallery() {
                 setStatus("loading");
                 setReloadKey((key) => key + 1);
               }}
-              className="mt-2 flex items-center gap-2 rounded-2xl bg-accent px-4 py-2 text-sm font-semibold text-white transition-all duration-150 ease-out hover:bg-blue-700 active:scale-[0.98] dark:bg-accent-soft dark:text-slate-950"
+              className="mt-2 flex items-center gap-2 rounded-2xl bg-accent px-4 py-2 text-sm font-semibold text-white transition-all duration-150 ease-out hover:bg-accent-strong active:scale-[0.98] dark:bg-accent-soft dark:text-white"
             >
               <RefreshCw className="h-4 w-4" aria-hidden />
               Coba lagi

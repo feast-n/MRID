@@ -3,10 +3,10 @@
 ## DESIGN THEME
 - **Style:** iOS Minimalist Clean (Light/Dark Glassmorphism, Subtle Gradients, Smooth Shadows).
 - **Border Radius:** `rounded-2xl` dan `rounded-3xl` khas iOS Widget.
-- **Background:** Soft Gray (`bg-slate-50 dark:bg-slate-950`) dengan aksen Glassmorphism (`backdrop-blur-md bg-white/70 dark:bg-slate-900/70`).
+- **Background:** Slate-100 (`bg-slate-100 dark:bg-slate-900/80`) dengan aksen Glassmorphism (`backdrop-blur-md bg-white/70 dark:bg-slate-900/70`).
 
 ## COLOR PALETTE
-- **Primary Accent:** iOS Blue (`#007AFF`) / Electric Cyan (`#06B6D4`).
+- **Primary Accent:** Black (`#000000`) / Dark Gray (`#262626` dark mode). High contrast on slate-100 canvas, white text = 21:1 (WCAG AAA).
 - **Surface:** White / Dark Slate dengan border transparan (`border border-slate-200/50 dark:border-slate-800/50`).
 - **Text:** High Contrast Slate (`text-slate-900 dark:text-slate-100`) & Subtitle Muted (`text-slate-500`).
 

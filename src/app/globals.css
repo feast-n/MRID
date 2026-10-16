@@ -20,10 +20,12 @@
   --color-foreground: var(--foreground);
 
   /* Aksen tunggal — dipakai hemat, hanya untuk aksi & sorotan.
-   * Youthful Men palette: Electric Cobalt (blue-600) sebagai aksen utama. */
-  --color-accent: #2563eb;
-  --color-accent-strong: #1d4ed8;
-  --color-accent-soft: #3b82f6;
+   * Primary: Black (#000000). High contrast, vibrant on slate-100 canvas.
+   * accent-strong = hover state (near-black), accent-soft = dark-mode button bg (dark gray, visible on dark cards).
+   * Neutrals per R-29: black does not count toward the 2-3 core + 1 accent limit. */
+  --color-accent: #000000;
+  --color-accent-strong: #0a0a0a;
+  --color-accent-soft: #262626;
 
   --font-sans: var(--mrid-font-sans);
   --font-mono: var(--font-geist-mono);
