@@ -4,6 +4,7 @@ import AdminDashboard, {
   type MotivationRow,
 } from "@/components/admin/AdminDashboard";
 import { type GalleryPhoto } from "@/config/gallery";
+import { type DriverRow } from "@/config/driver";
 import { createClient } from "@/utils/supabase/server";
 
 export const metadata = {
@@ -48,9 +49,18 @@ export default async function AdminPage() {
     feedbackResult.error || motivationResult.error || galleryResult.error,
   );
 
+  // Baris driver milik user ini (1 user = 1 driver) — null = belum setup.
+  const { data: driverRow } = await supabase
+    .from("drivers")
+    .select("*")
+    .eq("user_id", user.id)
+    .maybeSingle();
+
   return (
     <AdminDashboard
       email={user.email ?? "admin"}
+      userId={user.id}
+      initialDriver={(driverRow ?? null) as DriverRow | null}
       initialFeedback={(feedbackResult.data ?? []) as FeedbackRow[]}
       initialMotivations={(motivationResult.data ?? []) as MotivationRow[]}
       initialGallery={(galleryResult.data ?? []) as GalleryPhoto[]}

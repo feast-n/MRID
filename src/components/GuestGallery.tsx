@@ -71,7 +71,7 @@ export default function GuestGallery() {
   }, [reloadKey]);
 
   return (
-    <section className="rounded-3xl border border-slate-200/60 bg-white/80 p-5 backdrop-blur-xl dark:border-slate-800/60 dark:bg-slate-900/80">
+    <section className="rounded-3xl border border-slate-200/80 bg-white/90 p-5 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/80 dark:bg-slate-900/80">
       <div className="flex items-center justify-between gap-3">
         <div className="min-w-0">
           <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
@@ -84,12 +84,12 @@ export default function GuestGallery() {
             />
             Galeri penumpang
           </h2>
-          <p className="mt-1.5 text-sm text-slate-500 dark:text-slate-400">
+          <p className="mt-1.5 text-xs font-normal text-slate-500 dark:text-slate-400">
             Foto-foto yang dititipkan lewat dashboard admin.
           </p>
         </div>
         <span className="flex shrink-0 items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-medium text-slate-500 dark:bg-slate-800 dark:text-slate-400">
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" />
+          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-lime-500" />
           realtime
         </span>
       </div>
@@ -119,7 +119,7 @@ export default function GuestGallery() {
                 setStatus("loading");
                 setReloadKey((key) => key + 1);
               }}
-              className="mt-2 flex items-center gap-2 rounded-2xl bg-accent px-4 py-2 text-sm font-semibold text-white transition-all duration-200 ease-out hover:brightness-110 active:scale-95 dark:bg-accent-soft dark:text-slate-950"
+              className="mt-2 flex items-center gap-2 rounded-2xl bg-accent px-4 py-2 text-sm font-semibold text-white transition-all duration-150 ease-out hover:bg-blue-700 active:scale-[0.98] dark:bg-accent-soft dark:text-slate-950"
             >
               <RefreshCw className="h-4 w-4" aria-hidden />
               Coba lagi
@@ -139,7 +139,7 @@ export default function GuestGallery() {
             {photos.map((photo) => (
               <figure
                 key={photo.id}
-                className="overflow-hidden rounded-2xl border border-slate-200/60 bg-slate-50/80 dark:border-slate-800/60 dark:bg-slate-950/60"
+                className="overflow-hidden rounded-2xl border border-slate-200/80 bg-slate-50/80 dark:border-slate-800/80 dark:bg-slate-950/60"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img

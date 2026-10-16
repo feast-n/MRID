@@ -21,7 +21,7 @@ const RATING_HINT: Record<number, string> = {
 };
 
 const FIELD_CLASS =
-  "w-full rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-sm text-slate-900 outline-none transition duration-200 ease-out placeholder:text-slate-400 focus:border-accent focus:ring-4 focus:ring-accent/15 disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-accent-soft dark:focus:ring-accent-soft/15";
+  "w-full rounded-2xl border border-slate-200/70 bg-white/90 px-4 py-2.5 text-sm text-slate-900 outline-none transition duration-150 ease-out placeholder:text-slate-400 focus:border-accent focus:ring-4 focus:ring-accent/15 disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-accent-soft dark:focus:ring-accent-soft/15";
 
 /**
  * Feature 2 — Kesan Penumpang.
@@ -83,14 +83,14 @@ export default function PassengerFeedbackForm() {
   }
 
   return (
-    <section className="rounded-3xl border border-slate-200/60 bg-white/80 p-5 backdrop-blur-xl dark:border-slate-800/60 dark:bg-slate-900/80">
+    <section className="rounded-3xl border border-slate-200/80 bg-white/90 p-5 backdrop-blur-xl shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:border-slate-800/80 dark:bg-slate-900/80">
       <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
         Kesan Penumpang
       </p>
       <h2 className="mt-1 text-[17px] font-semibold tracking-tight text-slate-900 dark:text-slate-100">
         Kasih review singkat dong 💌
       </h2>
-      <p className="mt-1.5 text-sm text-slate-500 dark:text-slate-400">
+      <p className="mt-1.5 text-xs font-normal text-slate-500 dark:text-slate-400">
         Super cepet, cuma butuh 10 detik — jujur aja, santai kok.
       </p>
 
@@ -98,7 +98,7 @@ export default function PassengerFeedbackForm() {
         <div>
           <label
             htmlFor="passenger-name"
-            className="mb-1 block text-xs font-medium text-slate-500 dark:text-slate-400"
+            className="mb-1 block text-xs font-medium text-slate-700 dark:text-slate-300"
           >
             Nama penumpang <span className="font-normal">(opsional)</span>
           </label>
@@ -117,7 +117,7 @@ export default function PassengerFeedbackForm() {
         <div>
           <label
             htmlFor="passenger-comment"
-            className="mb-1 block text-xs font-medium text-slate-500 dark:text-slate-400"
+            className="mb-1 block text-xs font-medium text-slate-700 dark:text-slate-300"
           >
             Kesan &amp; pesan
           </label>
@@ -138,7 +138,7 @@ export default function PassengerFeedbackForm() {
         </div>
 
         <div>
-          <span className="mb-1 block text-xs font-medium text-slate-500 dark:text-slate-400">
+          <span className="mb-1 block text-xs font-medium text-slate-700 dark:text-slate-300">
             Rating
           </span>
           <div className="flex flex-wrap items-center gap-1.5">
@@ -151,7 +151,7 @@ export default function PassengerFeedbackForm() {
                   aria-label={`Beri rating ${value} dari 5`}
                   disabled={isSubmitting}
                   onClick={() => setRating(value)}
-                  className="rounded-xl p-1.5 transition duration-200 ease-out hover:scale-110 active:scale-95 disabled:opacity-60"
+                  className="rounded-xl p-1.5 transition duration-150 ease-out hover:scale-110 active:scale-[0.98] disabled:opacity-60"
                 >
                   <Star
                     className={`h-6 w-6 transition-colors ${
@@ -175,7 +175,7 @@ export default function PassengerFeedbackForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="mt-1 flex items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 ease-out hover:brightness-110 active:scale-95 disabled:opacity-60 dark:bg-accent-soft dark:text-slate-950"
+          className="mt-1 flex items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-150 ease-out hover:bg-blue-700 active:scale-[0.98] disabled:opacity-60 dark:bg-accent-soft dark:text-slate-950"
         >
           {isSubmitting ? (
             <>
@@ -191,7 +191,7 @@ export default function PassengerFeedbackForm() {
         </button>
 
         {state.status === "success" && (
-          <p className="flex items-center gap-1.5 rounded-2xl bg-emerald-500/10 px-3 py-2 text-sm text-emerald-600 dark:text-emerald-400">
+          <p className="flex items-center gap-1.5 rounded-2xl bg-lime-500/15 px-3 py-2 text-sm text-lime-700 dark:text-lime-400">
             <CheckCircle2 className="h-4 w-4 shrink-0" aria-hidden />
             Makasih banyak! Kesanmu udah kesimpen 🙌
           </p>
