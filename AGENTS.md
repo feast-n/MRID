@@ -1,9 +1,18 @@
-<!-- BEGIN:nextjs-agent-rules -->
+# AGENT INSTRUCTIONS: MRID (My Rider Identity Dashboard)
 
-## This is NOT the Next.js you know
+## PROJECT OVERVIEW
+MRID adalah platform web dashboard identitas rider ojek online interaktif yang responsif (Mobile-first, iOS Minimalist style). Proyek ini dibuat menggunakan Next.js (App Router), Tailwind CSS, dan Supabase Backend.
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+## STRICT ZERO-HALLUCINATION RULES
+1. DILARANG HARDCODE ATAU NGARANG DATA RIDER:
+   - Semua data spek motor, identitas, basecamp, dan hobi HANYA boleh diambil dari data statis di `src/config/rider.ts` atau Supabase DB.
+   - Jika ada variabel yang kosong, tampilkan fallback UI (`—`) atau tanyakan ke user terlebih dahulu.
+2. DILARANG MENGUBAH IMPORTS/STRUCTURE SUPABASE:
+   - Gunakan selalu helper dari `src/utils/supabase/client.ts` untuk Client Component dan `src/utils/supabase/server.ts` untuk Server Component.
+3. PERSONALITY CODE INSTRUCTION:
+   - Gaya bahasa UI/Copywriting: Casual, asik, ala anak muda umur 21 tahun (bahasa gaul santai/estetik khas Gen-Z), tapi tetap sopan bagi penumpang.
 
-This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
-
-<!-- END:nextjs-agent-rules -->
+## TECH STACK & CONFIG
+- Framework: Next.js 14+ (App Router, TypeScript)
+- Styling: Tailwind CSS (iOS Clean Minimalist theme: rounded-3xl, backdrop-blur, subtle borders, SF Pro-like fonts)
+- Database & Backend: Supabase (`@supabase/supabase-js`, `@supabase/ssr`)

@@ -24,3 +24,28 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Marquee untuk widget Today's Motivation */
+@keyframes mrid-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-mrid-marquee {
+  animation: mrid-marquee 45s linear infinite;
+}
+
+.animate-mrid-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-mrid-marquee {
+    animation: none;
+  }
+}
+
