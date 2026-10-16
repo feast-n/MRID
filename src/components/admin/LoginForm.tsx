@@ -47,14 +47,14 @@ export default function LoginForm() {
   }
 
   const inputClass =
-    "w-full rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#007AFF] disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-[#06B6D4]";
+    "w-full rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-accent disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-accent-soft";
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3">
       <div>
         <label
           htmlFor="admin-email"
-          className="mb-1 block text-xs font-medium text-slate-500"
+          className="mb-1 block text-xs font-medium text-slate-500 dark:text-slate-400"
         >
           Email admin
         </label>
@@ -74,7 +74,7 @@ export default function LoginForm() {
       <div>
         <label
           htmlFor="admin-password"
-          className="mb-1 block text-xs font-medium text-slate-500"
+          className="mb-1 block text-xs font-medium text-slate-500 dark:text-slate-400"
         >
           Password
         </label>
@@ -94,7 +94,7 @@ export default function LoginForm() {
       <button
         type="submit"
         disabled={isLoading}
-        className="mt-1 flex items-center justify-center gap-2 rounded-2xl bg-[#007AFF] px-4 py-3 text-sm font-semibold text-white transition hover:brightness-110 active:scale-[0.98] disabled:opacity-60 dark:bg-[#06B6D4]"
+        className="mt-1 flex items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-3 text-sm font-semibold text-white transition-all duration-200 ease-out hover:brightness-110 active:scale-95 disabled:opacity-60 dark:bg-accent-soft"
       >
         {isLoading ? (
           <>

@@ -326,17 +326,17 @@ export default function AdminDashboard({
         {/* Header admin */}
         <header className="mb-6 flex flex-wrap items-center justify-between gap-4">
           <div>
-            <p className="text-xs font-medium uppercase tracking-widest text-[#007AFF] dark:text-[#06B6D4]">
+            <p className="text-xs font-medium uppercase tracking-widest text-accent dark:text-accent-soft">
               Restricted Area
             </p>
             <h1 className="mt-1 flex items-center gap-2 text-3xl font-bold tracking-tight">
               <ShieldCheck
-                className="h-7 w-7 text-[#007AFF] dark:text-[#06B6D4]"
+                className="h-7 w-7 text-accent dark:text-accent-soft"
                 aria-hidden
               />
               Admin MRID
             </h1>
-            <p className="mt-1 text-sm text-slate-500">
+            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
               Masuk sebagai <span className="font-medium">{email}</span> —
               moderasi feedback &amp; kutipan di sini.
             </p>
@@ -344,7 +344,7 @@ export default function AdminDashboard({
           <button
             type="button"
             onClick={handleLogout}
-            className="flex items-center gap-2 rounded-2xl border border-slate-200/70 bg-white/70 px-4 py-2.5 text-sm font-semibold text-slate-600 transition hover:border-red-300 hover:text-red-500 dark:border-slate-700/70 dark:bg-slate-900/70 dark:text-slate-300"
+            className="flex items-center gap-2 rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-sm font-semibold text-slate-600 transition-all duration-200 ease-out hover:border-red-300 hover:text-red-500 active:scale-95 dark:border-slate-700/70 dark:bg-slate-900/80 dark:text-slate-300"
           >
             <LogOut className="h-4 w-4" aria-hidden />
             Keluar
@@ -353,24 +353,24 @@ export default function AdminDashboard({
 
         {/* Stats ringkas */}
         <div className="mb-4 grid grid-cols-3 gap-3">
-          <div className="rounded-3xl border border-slate-200/50 bg-white/70 p-4 backdrop-blur-md dark:border-slate-800/50 dark:bg-slate-900/70">
-            <p className="text-xs text-slate-500">Total feedback</p>
+          <div className="rounded-3xl border border-slate-200/60 bg-white/80 p-4 backdrop-blur-xl dark:border-slate-800/60 dark:bg-slate-900/80">
+            <p className="text-xs text-slate-500 dark:text-slate-400">Total feedback</p>
             <p className="mt-1 text-2xl font-bold">{feedback.length}</p>
           </div>
-          <div className="rounded-3xl border border-slate-200/50 bg-white/70 p-4 backdrop-blur-md dark:border-slate-800/50 dark:bg-slate-900/70">
-            <p className="text-xs text-slate-500">Rata-rata rating</p>
+          <div className="rounded-3xl border border-slate-200/60 bg-white/80 p-4 backdrop-blur-xl dark:border-slate-800/60 dark:bg-slate-900/80">
+            <p className="text-xs text-slate-500 dark:text-slate-400">Rata-rata rating</p>
             <p className="mt-1 flex items-center gap-1 text-2xl font-bold">
               {avgRating}
               {avgRating !== "—" && (
                 <Star
-                  className="h-4 w-4 fill-[#007AFF] text-[#007AFF] dark:fill-[#06B6D4] dark:text-[#06B6D4]"
+                  className="h-4 w-4 fill-accent text-accent dark:fill-accent-soft dark:text-accent-soft"
                   aria-hidden
                 />
               )}
             </p>
           </div>
-          <div className="rounded-3xl border border-slate-200/50 bg-white/70 p-4 backdrop-blur-md dark:border-slate-800/50 dark:bg-slate-900/70">
-            <p className="text-xs text-slate-500">Belum di-approve</p>
+          <div className="rounded-3xl border border-slate-200/60 bg-white/80 p-4 backdrop-blur-xl dark:border-slate-800/60 dark:bg-slate-900/80">
+            <p className="text-xs text-slate-500 dark:text-slate-400">Belum di-approve</p>
             <p className="mt-1 text-2xl font-bold">{pendingCount}</p>
           </div>
         </div>
@@ -382,14 +382,14 @@ export default function AdminDashboard({
         )}
 
         {status === "loading" && (
-          <p className="flex items-center gap-2 rounded-3xl border border-slate-200/50 bg-white/70 p-5 text-sm text-slate-500 backdrop-blur-md dark:border-slate-800/50 dark:bg-slate-900/70">
+          <p className="flex items-center gap-2 rounded-3xl border border-slate-200/60 bg-white/80 p-5 text-sm text-slate-500 dark:text-slate-400 backdrop-blur-xl dark:border-slate-800/60 dark:bg-slate-900/80">
             <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
             Nyiapin data admin...
           </p>
         )}
 
         {status === "error" && (
-          <div className="rounded-3xl border border-slate-200/50 bg-white/70 p-5 backdrop-blur-md dark:border-slate-800/50 dark:bg-slate-900/70">
+          <div className="rounded-3xl border border-slate-200/60 bg-white/80 p-5 backdrop-blur-xl dark:border-slate-800/60 dark:bg-slate-900/80">
             <p className="text-sm text-red-500">
               Gagal memuat data. Pastikan policy RLS untuk admin (role
               `authenticated`) udah dijalankan di SQL Editor, terus coba lagi.
@@ -400,7 +400,7 @@ export default function AdminDashboard({
                 setStatus("loading");
                 void loadAll();
               }}
-              className="mt-3 flex items-center gap-2 rounded-2xl bg-[#007AFF] px-4 py-2 text-sm font-semibold text-white transition hover:brightness-110 dark:bg-[#06B6D4]"
+              className="mt-3 flex items-center gap-2 rounded-2xl bg-accent px-4 py-2 text-sm font-semibold text-white transition-all duration-200 ease-out hover:brightness-110 active:scale-95 dark:bg-accent-soft"
             >
               <RefreshCw className="h-4 w-4" aria-hidden />
               Coba lagi
@@ -411,15 +411,15 @@ export default function AdminDashboard({
         {status === "ready" && (
           <>
             {/* Kesan Penumpang */}
-            <section className="mb-4 rounded-3xl border border-slate-200/50 bg-white/70 p-5 backdrop-blur-md dark:border-slate-800/50 dark:bg-slate-900/70">
+            <section className="mb-4 rounded-3xl border border-slate-200/60 bg-white/80 p-5 backdrop-blur-xl dark:border-slate-800/60 dark:bg-slate-900/80">
               <h2 className="flex items-center gap-2 text-lg font-semibold">
                 <MessageSquare
-                  className="h-5 w-5 text-[#007AFF] dark:text-[#06B6D4]"
+                  className="h-5 w-5 text-accent dark:text-accent-soft"
                   aria-hidden
                 />
                 Kesan Penumpang
               </h2>
-              <p className="mt-1 text-sm text-slate-500">
+              <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                 {feedback.length} feedback masuk (maks. 50 terbaru).
               </p>
 
@@ -454,7 +454,7 @@ export default function AdminDashboard({
                               key={value}
                               className={`h-3.5 w-3.5 ${
                                 value <= item.rating
-                                  ? "fill-[#007AFF] text-[#007AFF] dark:fill-[#06B6D4] dark:text-[#06B6D4]"
+                                  ? "fill-accent text-accent dark:fill-accent-soft dark:text-accent-soft"
                                   : "text-slate-300 dark:text-slate-600"
                               }`}
                               aria-hidden
@@ -466,7 +466,7 @@ export default function AdminDashboard({
                           onClick={() => void handleDeleteFeedback(item.id)}
                           disabled={busyId === item.id}
                           aria-label="Hapus feedback ini"
-                          className="rounded-xl p-1.5 text-slate-400 transition hover:bg-red-500/10 hover:text-red-500 disabled:opacity-50"
+                          className="rounded-xl p-1.5 text-slate-400 transition-all duration-200 ease-out hover:bg-red-500/10 hover:text-red-500 active:scale-95 disabled:opacity-50"
                         >
                           {busyId === item.id ? (
                             <Loader2
@@ -488,27 +488,27 @@ export default function AdminDashboard({
             </section>
 
             {/* Today's Motivation — moderasi */}
-            <section className="rounded-3xl border border-slate-200/50 bg-white/70 p-5 backdrop-blur-md dark:border-slate-800/50 dark:bg-slate-900/70">
+            <section className="rounded-3xl border border-slate-200/60 bg-white/80 p-5 backdrop-blur-xl dark:border-slate-800/60 dark:bg-slate-900/80">
               <h2 className="flex items-center gap-2 text-lg font-semibold">
                 <Quote
-                  className="h-5 w-5 text-[#007AFF] dark:text-[#06B6D4]"
+                  className="h-5 w-5 text-accent dark:text-accent-soft"
                   aria-hidden
                 />
                 Today&apos;s Motivation
               </h2>
-              <p className="mt-1 text-sm text-slate-500">
+              <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                 Yang tampil di dashboard publik cuma yang statusnya approved.
               </p>
 
               {/* Form tambah kutipan */}
               <form
                 onSubmit={handleAddQuote}
-                className="mt-4 flex flex-col gap-3 border-b border-slate-200/50 pb-4 dark:border-slate-800/50"
+                className="mt-4 flex flex-col gap-3 border-b border-slate-200/60 pb-4 dark:border-slate-800/60"
               >
                 <div>
                   <label
                     htmlFor="new-quote"
-                    className="mb-1 block text-xs font-medium text-slate-500"
+                    className="mb-1 block text-xs font-medium text-slate-500 dark:text-slate-400"
                   >
                     Kutipan baru <span className="font-normal">(wajib)</span>
                   </label>
@@ -521,7 +521,7 @@ export default function AdminDashboard({
                     onChange={(e) => setNewQuote(e.target.value)}
                     placeholder="Semangat terus ya hari ini! ✨"
                     disabled={isAdding}
-                    className="w-full resize-none rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#007AFF] disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-[#06B6D4]"
+                    className="w-full resize-none rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-accent disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-accent-soft"
                   />
                 </div>
                 <div className="flex flex-col gap-3 sm:flex-row">
@@ -532,12 +532,12 @@ export default function AdminDashboard({
                     onChange={(e) => setNewAuthor(e.target.value)}
                     placeholder="Nama penulis (opsional)"
                     disabled={isAdding}
-                    className="w-full rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#007AFF] disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-[#06B6D4] sm:max-w-[240px]"
+                    className="w-full rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-accent disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-accent-soft sm:max-w-[240px]"
                   />
                   <button
                     type="submit"
                     disabled={isAdding}
-                    className="flex items-center justify-center gap-2 rounded-2xl bg-[#007AFF] px-4 py-2.5 text-sm font-semibold text-white transition hover:brightness-110 active:scale-[0.98] disabled:opacity-60 dark:bg-[#06B6D4]"
+                    className="flex items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 ease-out hover:brightness-110 active:scale-95 disabled:opacity-60 dark:bg-accent-soft"
                   >
                     {isAdding ? (
                       <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
@@ -569,7 +569,7 @@ export default function AdminDashboard({
                       {item.quote}
                     </p>
                     <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
-                      <p className="text-xs text-slate-500">
+                      <p className="text-xs text-slate-500 dark:text-slate-400">
                         — {item.author.trim() || "Penumpang Baik"} •{" "}
                         {formatDate(item.created_at)}
                       </p>
@@ -577,7 +577,7 @@ export default function AdminDashboard({
                         type="button"
                         onClick={() => void handleToggleApprove(item)}
                         disabled={busyId === item.id}
-                        className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition disabled:opacity-50 ${
+                        className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition-all duration-200 ease-out active:scale-95 disabled:opacity-50 ${
                           item.is_approved
                             ? "bg-emerald-500/15 text-emerald-600 hover:bg-emerald-500/25 dark:text-emerald-400"
                             : "bg-amber-500/15 text-amber-600 hover:bg-amber-500/25 dark:text-amber-400"
@@ -602,27 +602,27 @@ export default function AdminDashboard({
             </section>
 
             {/* Galeri Kesan Penumpang (foto dari admin → tampil di guest) */}
-            <section className="mt-4 rounded-3xl border border-slate-200/50 bg-white/70 p-5 backdrop-blur-md dark:border-slate-800/50 dark:bg-slate-900/70">
+            <section className="mt-4 rounded-3xl border border-slate-200/60 bg-white/80 p-5 backdrop-blur-xl dark:border-slate-800/60 dark:bg-slate-900/80">
               <h2 className="flex items-center gap-2 text-lg font-semibold">
                 <ImageIcon
-                  className="h-5 w-5 text-[#007AFF] dark:text-[#06B6D4]"
+                  className="h-5 w-5 text-accent dark:text-accent-soft"
                   aria-hidden
                 />
                 Galeri Kesan Penumpang
               </h2>
-              <p className="mt-1 text-sm text-slate-500">
+              <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
                 Foto ini yang tampil di halaman guest. Bisa diisi (unggah) atau
                 diperbarui (caption/hapus) kapan aja.
               </p>
 
               <form
                 onSubmit={handleUploadPhoto}
-                className="mt-4 flex flex-col gap-3 border-b border-slate-200/50 pb-4 dark:border-slate-800/50"
+                className="mt-4 flex flex-col gap-3 border-b border-slate-200/60 pb-4 dark:border-slate-800/60"
               >
                 <div>
                   <label
                     htmlFor="gallery-file"
-                    className="mb-1 block text-xs font-medium text-slate-500"
+                    className="mb-1 block text-xs font-medium text-slate-500 dark:text-slate-400"
                   >
                     Pilih foto{" "}
                     <span className="font-normal">
@@ -638,7 +638,7 @@ export default function AdminDashboard({
                     onChange={(e) =>
                       setSelectedFile(e.target.files?.[0] ?? null)
                     }
-                    className="block w-full text-sm text-slate-600 file:mr-3 file:rounded-2xl file:border-0 file:bg-[#007AFF] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white transition hover:file:brightness-110 dark:text-slate-300 dark:file:bg-[#06B6D4]"
+                    className="block w-full text-sm text-slate-600 file:mr-3 file:rounded-2xl file:border-0 file:bg-accent file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white transition-all duration-200 ease-out hover:file:brightness-110 dark:text-slate-300 dark:file:bg-accent-soft"
                   />
                 </div>
 
@@ -650,12 +650,12 @@ export default function AdminDashboard({
                     onChange={(e) => setUploadCaption(e.target.value)}
                     placeholder="Caption (opsional), mis. 'Seru banget!'"
                     disabled={isUploading}
-                    className="w-full rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#007AFF] disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-[#06B6D4] sm:max-w-[260px]"
+                    className="w-full rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-accent disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-accent-soft sm:max-w-[260px]"
                   />
                   <button
                     type="submit"
                     disabled={isUploading}
-                    className="flex items-center justify-center gap-2 rounded-2xl bg-[#007AFF] px-4 py-2.5 text-sm font-semibold text-white transition hover:brightness-110 active:scale-[0.98] disabled:opacity-60 dark:bg-[#06B6D4]"
+                    className="flex items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 ease-out hover:brightness-110 active:scale-95 disabled:opacity-60 dark:bg-accent-soft"
                   >
                     {isUploading ? (
                       <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
@@ -667,7 +667,7 @@ export default function AdminDashboard({
                 </div>
 
                 {selectedFile && !isUploading && (
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
                     Dipilih: {selectedFile.name} (
                     {(selectedFile.size / 1024 / 1024).toFixed(2)} MB)
                   </p>
@@ -716,14 +716,14 @@ export default function AdminDashboard({
                               }
                             }}
                             placeholder="Caption (opsional)"
-                            className="min-w-0 flex-1 rounded-xl border border-slate-200/70 bg-white/90 px-2.5 py-1.5 text-xs text-slate-900 outline-none focus:border-[#007AFF] dark:border-slate-700/70 dark:bg-slate-950/70 dark:text-slate-100 dark:focus:border-[#06B6D4]"
+                            className="min-w-0 flex-1 rounded-xl border border-slate-200/70 bg-white/90 px-2.5 py-1.5 text-xs text-slate-900 outline-none focus:border-accent dark:border-slate-700/70 dark:bg-slate-950/70 dark:text-slate-100 dark:focus:border-accent-soft"
                           />
                           <button
                             type="button"
                             aria-label="Simpan caption"
                             disabled={busyId === photo.id}
                             onClick={() => void handleSaveCaption(photo)}
-                            className="rounded-lg p-1.5 text-emerald-600 transition hover:bg-emerald-500/10 disabled:opacity-50 dark:text-emerald-400"
+                            className="rounded-lg p-1.5 text-emerald-600 transition-all duration-200 ease-out hover:bg-emerald-500/10 active:scale-95 disabled:opacity-50 dark:text-emerald-400"
                           >
                             {busyId === photo.id ? (
                               <Loader2
@@ -741,14 +741,14 @@ export default function AdminDashboard({
                               setEditingId(null);
                               setEditingCaption("");
                             }}
-                            className="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-500/10"
+                            className="rounded-lg p-1.5 text-slate-400 transition-all duration-200 ease-out hover:bg-slate-500/10 active:scale-95"
                           >
                             <X className="h-4 w-4" aria-hidden />
                           </button>
                         </div>
                       ) : (
                         <figcaption className="flex items-start justify-between gap-1 px-3 py-2">
-                          <span className="min-w-0 break-words text-xs text-slate-500">
+                          <span className="min-w-0 break-words text-xs text-slate-500 dark:text-slate-400">
                             {photo.caption.trim() || "—"}
                           </span>
                           <span className="flex shrink-0 gap-0.5">
@@ -759,7 +759,7 @@ export default function AdminDashboard({
                                 setEditingId(photo.id);
                                 setEditingCaption(photo.caption);
                               }}
-                              className="rounded-lg p-1 text-slate-400 transition hover:bg-[#007AFF]/10 hover:text-[#007AFF] dark:hover:text-[#06B6D4]"
+                              className="rounded-lg p-1 text-slate-400 transition-all duration-200 ease-out hover:bg-accent/10 hover:text-accent active:scale-95 dark:hover:text-accent-soft"
                             >
                               <Pencil className="h-3.5 w-3.5" aria-hidden />
                             </button>
@@ -768,7 +768,7 @@ export default function AdminDashboard({
                               aria-label="Hapus foto ini"
                               disabled={busyId === photo.id}
                               onClick={() => void handleDeletePhoto(photo)}
-                              className="rounded-lg p-1 text-slate-400 transition hover:bg-red-500/10 hover:text-red-500 disabled:opacity-50"
+                              className="rounded-lg p-1 text-slate-400 transition-all duration-200 ease-out hover:bg-red-500/10 hover:text-red-500 active:scale-95 disabled:opacity-50"
                             >
                               {busyId === photo.id ? (
                                 <Loader2

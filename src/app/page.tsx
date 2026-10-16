@@ -1,5 +1,4 @@
 import { Bike, MapPin, UserRound } from "lucide-react";
-import ComfortToggle from "@/components/ComfortToggle";
 import GuestGallery from "@/components/GuestGallery";
 import PassengerFeedbackForm from "@/components/PassengerFeedbackForm";
 import TodayMotivationWidget from "@/components/TodayMotivationWidget";
@@ -143,9 +142,6 @@ export default function Home() {
             </div>
           </div>
         </WidgetCard>
-
-        {/* Passenger Comfort Toggle */}
-        <ComfortToggle />
 
         {/* Galeri Kesan Penumpang (foto dari admin) */}
         <GuestGallery />
