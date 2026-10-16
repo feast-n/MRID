@@ -175,7 +175,7 @@ export default function PassengerFeedbackForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="mt-1 flex items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-150 ease-out hover:bg-blue-700 active:scale-[0.98] disabled:opacity-60 dark:bg-accent-soft dark:text-slate-950"
+          className="mt-1 flex items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-150 ease-out hover:bg-accent-strong active:scale-[0.98] disabled:opacity-60 dark:bg-accent-soft dark:text-white"
         >
           {isSubmitting ? (
             <>
