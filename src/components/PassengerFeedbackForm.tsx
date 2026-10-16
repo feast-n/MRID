@@ -20,6 +20,9 @@ const RATING_HINT: Record<number, string> = {
   5: "Sempurna, gas terus! 🚀",
 };
 
+const FIELD_CLASS =
+  "w-full rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-sm text-slate-900 outline-none transition duration-200 ease-out placeholder:text-slate-400 focus:border-accent focus:ring-4 focus:ring-accent/15 disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-accent-soft dark:focus:ring-accent-soft/15";
+
 /**
  * Feature 2 — Kesan Penumpang.
  * Form ringkas yang INSERT langsung ke tabel `feedback` Supabase
@@ -80,14 +83,14 @@ export default function PassengerFeedbackForm() {
   }
 
   return (
-    <section className="rounded-3xl border border-slate-200/50 bg-white/70 p-5 backdrop-blur-md dark:border-slate-800/50 dark:bg-slate-900/70">
-      <p className="text-xs font-medium uppercase tracking-wider text-slate-500">
+    <section className="rounded-3xl border border-slate-200/60 bg-white/80 p-5 backdrop-blur-xl dark:border-slate-800/60 dark:bg-slate-900/80">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
         Kesan Penumpang
       </p>
-      <h2 className="mt-1 text-lg font-semibold text-slate-900 dark:text-slate-100">
+      <h2 className="mt-1 text-[17px] font-semibold tracking-tight text-slate-900 dark:text-slate-100">
         Kasih review singkat dong 💌
       </h2>
-      <p className="mt-1 text-sm text-slate-500">
+      <p className="mt-1.5 text-sm text-slate-500 dark:text-slate-400">
         Super cepet, cuma butuh 10 detik — jujur aja, santai kok.
       </p>
 
@@ -95,7 +98,7 @@ export default function PassengerFeedbackForm() {
         <div>
           <label
             htmlFor="passenger-name"
-            className="mb-1 block text-xs font-medium text-slate-500"
+            className="mb-1 block text-xs font-medium text-slate-500 dark:text-slate-400"
           >
             Nama penumpang <span className="font-normal">(opsional)</span>
           </label>
@@ -107,14 +110,14 @@ export default function PassengerFeedbackForm() {
             placeholder="Anonim"
             maxLength={80}
             disabled={isSubmitting}
-            className="w-full rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#007AFF] disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-[#06B6D4]"
+            className={FIELD_CLASS}
           />
         </div>
 
         <div>
           <label
             htmlFor="passenger-comment"
-            className="mb-1 block text-xs font-medium text-slate-500"
+            className="mb-1 block text-xs font-medium text-slate-500 dark:text-slate-400"
           >
             Kesan &amp; pesan
           </label>
@@ -127,15 +130,15 @@ export default function PassengerFeedbackForm() {
             maxLength={500}
             disabled={isSubmitting}
             required
-            className="w-full resize-none rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-[#007AFF] disabled:opacity-60 dark:border-slate-700/70 dark:bg-slate-950/60 dark:text-slate-100 dark:focus:border-[#06B6D4]"
+            className={`${FIELD_CLASS} resize-none`}
           />
-          <p className="mt-1 text-right text-[11px] text-slate-400">
+          <p className="mt-1 text-right text-[11px] text-slate-500 dark:text-slate-400">
             {comment.length}/500
           </p>
         </div>
 
         <div>
-          <span className="mb-1 block text-xs font-medium text-slate-500">
+          <span className="mb-1 block text-xs font-medium text-slate-500 dark:text-slate-400">
             Rating
           </span>
           <div className="flex flex-wrap items-center gap-1.5">
@@ -148,12 +151,12 @@ export default function PassengerFeedbackForm() {
                   aria-label={`Beri rating ${value} dari 5`}
                   disabled={isSubmitting}
                   onClick={() => setRating(value)}
-                  className="rounded-xl p-1.5 transition hover:scale-110 disabled:opacity-60"
+                  className="rounded-xl p-1.5 transition duration-200 ease-out hover:scale-110 active:scale-95 disabled:opacity-60"
                 >
                   <Star
                     className={`h-6 w-6 transition-colors ${
                       isActive
-                        ? "fill-[#007AFF] text-[#007AFF] dark:fill-[#06B6D4] dark:text-[#06B6D4]"
+                        ? "fill-accent text-accent dark:fill-accent-soft dark:text-accent-soft"
                         : "text-slate-300 dark:text-slate-600"
                     }`}
                     aria-hidden
@@ -162,7 +165,7 @@ export default function PassengerFeedbackForm() {
               );
             })}
             {rating !== null && (
-              <span className="ml-1 text-xs text-slate-500">
+              <span className="ml-1 text-xs text-slate-500 dark:text-slate-400">
                 {RATING_HINT[rating]}
               </span>
             )}
@@ -172,7 +175,7 @@ export default function PassengerFeedbackForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="mt-1 flex items-center justify-center gap-2 rounded-2xl bg-[#007AFF] px-4 py-3 text-sm font-semibold text-white transition hover:brightness-110 active:scale-[0.98] disabled:opacity-60 dark:bg-[#06B6D4]"
+          className="mt-1 flex items-center justify-center gap-2 rounded-2xl bg-accent px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-200 ease-out hover:brightness-110 active:scale-95 disabled:opacity-60 dark:bg-accent-soft dark:text-slate-950"
         >
           {isSubmitting ? (
             <>

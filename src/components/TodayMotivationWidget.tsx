@@ -23,10 +23,13 @@ type LoadState =
 export default function TodayMotivationWidget() {
   const [state, setState] = useState<LoadState>({ status: "loading" });
 
-  const mergeItems = useCallback((prev: MotivationRow[], next: MotivationRow) => {
-    if (prev.some((item) => item.id === next.id)) return prev;
-    return [next, ...prev];
-  }, []);
+  const mergeItems = useCallback(
+    (prev: MotivationRow[], next: MotivationRow) => {
+      if (prev.some((item) => item.id === next.id)) return prev;
+      return [next, ...prev];
+    },
+    [],
+  );
 
   useEffect(() => {
     const supabase = createClient();
@@ -92,21 +95,21 @@ export default function TodayMotivationWidget() {
   }, [mergeItems]);
 
   return (
-    <section className="rounded-3xl border border-slate-200/50 bg-white/70 p-5 backdrop-blur-md dark:border-slate-800/50 dark:bg-slate-900/70">
+    <section className="rounded-3xl border border-slate-200/60 bg-white/80 p-5 backdrop-blur-xl dark:border-slate-800/60 dark:bg-slate-900/80">
       <div className="flex items-center justify-between gap-3">
-        <div>
-          <p className="text-xs font-medium uppercase tracking-wider text-slate-500">
+        <div className="min-w-0">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">
             Today&apos;s Motivation
           </p>
-          <h2 className="mt-1 flex items-center gap-2 text-lg font-semibold text-slate-900 dark:text-slate-100">
+          <h2 className="mt-1 flex items-center gap-2 text-[17px] font-semibold tracking-tight text-slate-900 dark:text-slate-100">
             <Sparkles
-              className="h-4 w-4 text-[#007AFF] dark:text-[#06B6D4]"
+              className="h-4 w-4 shrink-0 text-accent dark:text-accent-soft"
               aria-hidden
             />
             Kata-kata hari ini
           </h2>
         </div>
-        <span className="flex items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-medium text-slate-500 dark:bg-slate-800 dark:text-slate-400">
+        <span className="flex shrink-0 items-center gap-1 rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-medium text-slate-500 dark:bg-slate-800 dark:text-slate-400">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" />
           realtime
         </span>
@@ -114,7 +117,7 @@ export default function TodayMotivationWidget() {
 
       <div className="mt-4">
         {state.status === "loading" && (
-          <div className="flex items-center gap-2 text-sm text-slate-500">
+          <div className="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
             <RefreshCw className="h-4 w-4 animate-spin" aria-hidden />
             Nyari motivasi hari ini...
           </div>
@@ -128,8 +131,8 @@ export default function TodayMotivationWidget() {
 
         {state.status === "ready" && state.items.length === 0 && (
           <p className="rounded-2xl bg-slate-100 px-3 py-3 text-sm text-slate-500 dark:bg-slate-800 dark:text-slate-400">
-            Belum ada kutipan masuk hari ini — jadi yang pertama ngasih
-            motivasi dong ✨
+            Belum ada kutipan masuk hari ini — jadi yang pertama ngasih motivasi
+            dong ✨
           </p>
         )}
 
@@ -139,16 +142,16 @@ export default function TodayMotivationWidget() {
               {[...state.items, ...state.items].map((item, index) => (
                 <figure
                   key={`${item.id}-${index}`}
-                  className="flex w-[280px] shrink-0 flex-col gap-2 rounded-2xl border border-slate-200/60 bg-slate-50/80 p-4 dark:border-slate-800/60 dark:bg-slate-950/60 sm:w-[340px]"
+                  className="flex w-[260px] shrink-0 flex-col gap-2 rounded-2xl border border-slate-200/60 bg-slate-50/80 p-4 dark:border-slate-800/60 dark:bg-slate-950/60 sm:w-[320px]"
                 >
                   <Quote
-                    className="h-4 w-4 text-[#007AFF] dark:text-[#06B6D4]"
+                    className="h-4 w-4 text-accent dark:text-accent-soft"
                     aria-hidden
                   />
                   <blockquote className="text-sm leading-relaxed text-slate-700 dark:text-slate-300">
                     {item.quote}
                   </blockquote>
-                  <figcaption className="text-xs font-medium text-slate-500">
+                  <figcaption className="text-xs font-medium text-slate-500 dark:text-slate-400">
                     — {item.author.trim() || "Penumpang Baik"}
                   </figcaption>
                 </figure>

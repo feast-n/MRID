@@ -12,7 +12,13 @@ MRID adalah platform web dashboard identitas rider ojek online interaktif yang r
 3. PERSONALITY CODE INSTRUCTION:
    - Gaya bahasa UI/Copywriting: Casual, asik, ala anak muda umur 21 tahun (bahasa gaul santai/estetik khas Gen-Z), tapi tetap sopan bagi penumpang.
 
-## TECH STACK & CONFIG
-- Framework: Next.js 14+ (App Router, TypeScript)
-- Styling: Tailwind CSS (iOS Clean Minimalist theme: rounded-3xl, backdrop-blur, subtle borders, SF Pro-like fonts)
-- Database & Backend: Supabase (`@supabase/supabase-js`, `@supabase/ssr`)
+## STRICT GIT BRANCHING & MERGE WORKFLOW (MANDATORY)
+1. DILARANG WORK/COMMIT DIRECTLY ON `main` / `master`:
+   - Sebelum membuat atau mengubah kode untuk fitur baru/perbaikan, Agent WAJIB mengecek branch saat ini (`git branch --show-current`).
+   - Jika sedang berada di `main` atau `master`, Agent WAJIB membuat feature branch baru terlebih dahulu sebelum eksekusi file (contoh: `git checkout -b feature/nama-fitur`).
+2. FEATURE DEVELOPMENT ISOLATION:
+   - Setiap fitur baru, eksperimen, atau komponen baru HARUS memiliki branch terpisah.
+3. MERGE PROTOCOL (REQUIRES USER APPROVAL):
+   - Agent DILARANG melakukan `git merge` ke `main` secara otomatis.
+   - Setelah pengerjaan fitur di feature branch selesai, Agent HANYA boleh memberikan instruksi atau meminta konfirmasi ke user: *"Fitur [nama] sudah selesai di branch [nama-branch]. Apakah siap di-merge ke main?"*
+   - MERGE HANYA boleh dieksekusi setelah user memberikan persetujuan eksplisit (misal: "approve", "merge", "lanjut merge").
